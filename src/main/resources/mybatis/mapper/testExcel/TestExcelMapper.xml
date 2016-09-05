@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.mapper.TestExcelMapper">
+	<resultMap id="SkuPictureMap" type="com.test.entity.SkuPicture">
+		<result column="SPTPID" property="id" />
+		<result column="SKUID" property="skuId" />
+		<result column="TPURL" property="url" />
+		<result column="XSXH" property="inx" />
+		<result column="TPSYD" property="location" />
+		<result column="ZHWHSJ" property="lastUpdate" />
+	</resultMap>
+
+	<resultMap id="SkuMap" type="com.test.entity.Sku">
+		<result column="SKUID" property="id" />
+		<result column="SPFLID" property="categoryId" />
+		<result column="SPPPID" property="brandId" />
+		<result column="ERPDM" property="erpCode" />
+		<result column="SKUDM" property="skuCode" />
+		<result column="SPTM" property="barCode" />
+		<result column="SPMC" property="name" />
+		<result column="JLDW" property="unit" />
+		<result column="ZPBJ" property="isGiftGoods" />
+		<result column="TSBZ" property="specialGoodsFlag" />
+		<result column="SPLX" property="goodsType" />
+		<result column="STATUS" property="status" />
+		<result column="ZHWHSJ" property="lastUpdate" />
+	</resultMap>
+
+	<sql id="tb_col_sku">
+		SKUID,SPFLID,SPPPID,ERPDM,SKUDM,SPTM,SPMC,JLDW,ZPBJ,TSBZ,SPLX,STATUS,ZHWHSJ
+	</sql>
+	<sql id="tb_col_skutp">
+		SPTPID, SKUID, TPURL, XSXH, TPSYD, ZHWHSJ
+	</sql>
+	<sql id="tb_value_skutp">
+		null,#{skuId},#{url},#{inx},#{location},#{lastUpdate}
+	</sql>
+	<select id="selectSkuList" resultMap="SkuMap">
+		select
+		<include refid="tb_col_sku"></include>
+		from sku
+	</select>
+	<select id="selectSkuPictureList" resultMap="SkuPictureMap">
+		select
+		<include refid="tb_col_skutp"></include>
+		from skutp order by skuid,tpsyd,xsxh
+	</select>
+	<select id="selectSkuPictureOne" parameterType="com.test.entity.SkuPicture" resultType="int">
+		select count(*) from skutp
+		<where>
+			<if test="id != null">SPTPID=#{id}</if>
+			<if test="skuId != null"> and SKUID=#{skuId}</if>
+			<if test="inx != null"> and XSXH=#{inx}</if>
+			<if test="location != null"> and TPSYD=#{location}</if>
+		</where>
+	</select>
+	<insert id="insertSkuPicture" parameterType="com.test.entity.SkuPicture">
+		INSERT INTO skutp (
+		<include refid="tb_col_skutp"></include>
+		) VALUES (
+		<include refid="tb_value_skutp"></include>
+		)
+
+	</insert>
+</mapper>

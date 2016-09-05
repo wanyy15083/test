@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->
+    <dubbo:application name="test-consumer"/>
+
+    <!-- 使用multicast广播注册中心暴露发现服务地址 -->
+    <dubbo:registry id='reg' address="zookeeper://127.0.0.1:2181"  />
+    <!--<dubbo:registry id="reg-300" address="zookeeper://10.128.31.85:2181" default="false" />-->
+    <!--<dubbo:registry id="reg-500" address="zookeeper://10.128.31.93:2181" default="false" />-->
+    <!--<dubbo:registry id="reg-800" address="zookeeper://10.124.36.11:2181" default="false" />-->
+    <!--只订阅和只注册-->
+    <!--<dubbo:registry address="zookeeper://127.0.0.1" subscribe="false" register="false"/>-->
+    <!--多注册中心-->
+    <!--<dubbo:registry id="registry1" address="zookeeper://127.0.0.1:2181"/>-->
+    <!--<dubbo:registry id="registry2" address="zookeeper://127.0.0.1:2181" default="false"/>-->
+
+    <!-- 生成远程服务代理，可以和本地bean一样使用demoService -->
+    <!--<dubbo:reference id="testUserService" interface="com.test.service.TestUserService" />-->
+    <!-- 直连服务提供者 -->
+    <!--<dubbo:reference id="testUserService" interface="com.test.service.TestUserService" retries="2"-->
+    <!--url="dubbo://localhost:20880" registry="registry1" />-->
+
+    <!--<dubbo:reference id="skuGmzxPictureReadService" interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService" registry="reg-800" timeout="30000" />-->
+    <!--<dubbo:reference id="skuGmzxPictureReadService" interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService" url="dubbo://10.124.26.11:20880" timeout="10000" />-->
+
+</beans>

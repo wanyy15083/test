@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+
+
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/task 
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd">
+	
+	<context:annotation-config/>
+	<context:component-scan base-package="com.test" />
+     
+	<!-- 注解形式定时器，需要扫描包 -->
+	<task:executor id="executor" pool-size="5" />
+	<task:scheduler id="scheduler" pool-size="10" />
+	<task:annotation-driven executor="executor" scheduler="scheduler" />
+    
+	<!-- Job、JobDetaile定义 -->
+	<bean id="FindUserMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testUserService"/>
+		</property>
+		<property name="targetMethod">
+			<value>findUser</value>
+		</property>
+		<property name="concurrent">  
+			<value>false</value>  
+		</property> 
+	</bean>
+	<bean id="InsertUserMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testUserService"/>
+		</property>
+		<property name="targetMethod">
+			<value>insertUser</value>
+		</property>
+		<property name="concurrent">  
+			<value>false</value>  
+		</property> 
+	</bean>
+	<bean id="CreatePicMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testPicture"/>
+		</property>
+		<property name="targetMethod">
+			<value>createPic</value>
+		</property>
+		<property name="concurrent">  
+			<value>false</value>  
+		</property> 
+	</bean>
+	<bean id="CreatePic1Method" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testPicture"/>
+		</property>
+		<property name="targetMethod">
+			<value>createPic</value>
+		</property>
+		<property name="concurrent">  
+			<value>false</value>  
+		</property> 
+	</bean>
+	<bean id="CreatePic2Method" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject">
+			<ref bean="testPicture"/>
+		</property>
+		<property name="targetMethod">
+			<value>createPic</value>
+		</property>
+		<property name="concurrent">  
+			<value>false</value>  
+		</property> 
+	</bean>
+	<!-- Trigger定义 -->
+	<bean id="CronTriggerBean_FindUser" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="FindUserMethod"></property>
+		<property name="cronExpression" value="0/10 * * * * ?"></property>
+	</bean>
+	<bean id="CronTriggerBean_InsertUser" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="InsertUserMethod"></property>
+		<property name="cronExpression" value="0/10 * * * * ?"></property>
+	</bean>
+	<bean id="CronTriggerBean_CreatePic" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="CreatePicMethod"></property>
+		<property name="cronExpression" value="0 */3 * * * ?"></property>
+	</bean>
+	<bean id="CronTriggerBean_CreatePic1" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="CreatePic1Method"></property>
+		<property name="cronExpression" value="0/60 * * * * ?"></property>
+	</bean>
+	<bean id="CronTriggerBean_CreatePic2" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="CreatePic2Method"></property>
+		<property name="cronExpression" value="0/60 * * * * ?"></property>
+	</bean>
+	<!-- Scheduler定义 -->
+	<bean id="SpringJobSchedulerFactoryBean" lazy-init="false" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+		<property name="triggers">
+			<list>
+				<!-- <ref bean="CronTriggerBean_FindUser"/>
+				<ref bean="CronTriggerBean_InsertUser"/> -->
+				<!-- <ref bean="CronTriggerBean_CreatePic"/> -->
+				<!-- <ref bean="CronTriggerBean_CreatePic1"/>
+				<ref bean="CronTriggerBean_CreatePic2"/> -->
+			</list>
+		</property>
+	</bean>  
+</beans>
