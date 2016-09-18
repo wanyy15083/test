@@ -8,10 +8,8 @@ import com.test.mapper.TestUserMapper;
 import com.test.service.TestUserService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import java.util.List;

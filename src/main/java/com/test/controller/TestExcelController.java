@@ -207,6 +207,7 @@ public class TestExcelController {
 //            maplist.add(map);
 //        }
         List<Sku> list = testExcelService.selectSKuListByPage(1, 100000);
+//        Workbook workbook = ExcelExportUtil.exportExcel(maplist,ExcelType.HSSF);
         Workbook workbook = ExcelExportUtil.exportExcel(params, Sku.class, list);
 
 //		String fileName = "SKU数据.xlsx";

@@ -1,16 +1,7 @@
 package com.test.test;
 
-import com.google.zxing.EncodeHintType;
-import net.glxn.qrgen.QRCode;
-import net.glxn.qrgen.image.ImageType;
-
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 public class Test1 {
 

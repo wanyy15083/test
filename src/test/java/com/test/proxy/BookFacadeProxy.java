@@ -1,6 +1,7 @@
 package com.test.proxy;
 
-import java.lang.reflect.*;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 
 /**
  * Created by songyigui on 2016/8/9.

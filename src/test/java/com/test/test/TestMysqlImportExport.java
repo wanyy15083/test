@@ -3,7 +3,6 @@ package com.test.test;
 import com.test.entity.Sku;
 import com.test.entity.SkuPicture;
 import com.test.service.TestExcelService;
-import com.test.service.TestUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
