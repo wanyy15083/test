@@ -11,7 +11,7 @@
     <dubbo:registry id='reg' address="zookeeper://127.0.0.1:2181"  />
     <!--<dubbo:registry id="reg-300" address="zookeeper://10.128.31.85:2181" default="false" />-->
     <!--<dubbo:registry id="reg-500" address="zookeeper://10.128.31.93:2181" default="false" />-->
-    <!--<dubbo:registry id="reg-800" address="zookeeper://10.124.36.11:2181" default="false" />-->
+    <dubbo:registry id="reg-800" address="zookeeper://10.124.36.11:2181" default="false" />
     <!--只订阅和只注册-->
     <!--<dubbo:registry address="zookeeper://127.0.0.1" subscribe="false" register="false"/>-->
     <!--多注册中心-->
@@ -24,7 +24,8 @@
     <!--<dubbo:reference id="testUserService" interface="com.test.service.TestUserService" retries="2"-->
     <!--url="dubbo://localhost:20880" registry="registry1" />-->
 
-    <!--<dubbo:reference id="skuGmzxPictureReadService" interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService" registry="reg-800" timeout="30000" />-->
+    <dubbo:reference id="skuGmzxPictureReadService" interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService" timeout="30000" registry="reg-800" />
     <!--<dubbo:reference id="skuGmzxPictureReadService" interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService" url="dubbo://10.124.26.11:20880" timeout="10000" />-->
+    <dubbo:reference timeout="30000" interface="com.gome.o2m.ic.schedule.service.IcScheduleService" id="icScheduleService" registry="reg-800"></dubbo:reference>
 
 </beans>
