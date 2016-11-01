@@ -1,8 +1,5 @@
 package com.test.test;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Test1 {
 
 	public static void main(String[] args) throws Exception {
@@ -25,14 +22,19 @@ public class Test1 {
 //		}
 //		CountDownLatch countDownLatch = new CountDownLatch(1);
 //		countDownLatch.await();
-		List<Integer> list = new ArrayList<Integer>();
+//		List<Integer> list = new ArrayList<Integer>();
 //		list.add(1);
 //		list.add(2);
 //		list.add(3);
 //		list.add(1);
-		for (Integer integer : list) {
-			System.out.println(integer);
-		}
+//		for (Integer integer : list) {
+//			System.out.println(integer);
+//		}
+
+
+		Integer a = 1099;
+		double b = a/100;
+		System.out.println(b);
 	}
 	
 

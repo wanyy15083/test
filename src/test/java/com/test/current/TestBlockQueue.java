@@ -2,13 +2,10 @@ package com.test.current;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * Created by songyigui on 2016/9/20.
@@ -16,7 +13,7 @@ import java.util.concurrent.atomic.AtomicReference;
 public class TestBlockQueue {
 
     private static final int invertal = 1000;
-    private static final BlockingQueue<Task> queue = new LinkedBlockingDeque<Task>();
+    private static final BlockingQueue<Task> queue = new LinkedBlockingQueue<Task>();
     private static final ExecutorService fetchEs = Executors.newSingleThreadExecutor();
     private static final ExecutorService handleEs = Executors.newFixedThreadPool(4);
 //    private static final AtomicInteger count = new AtomicInteger();
