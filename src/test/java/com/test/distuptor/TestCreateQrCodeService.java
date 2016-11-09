@@ -7,14 +7,15 @@ import com.gome.o2m.ic.scancode.service.TwoCodeWriteService;
 import com.gome.o2m.util.Constants;
 import com.gome.o2m.util.ImagesPathUtil;
 import com.google.zxing.EncodeHintType;
-import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.EventTranslatorOneArg;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.WorkHandler;
+import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import com.lmax.disruptor.util.DaemonThreadFactory;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 import org.apache.commons.beanutils.BeanUtils;
@@ -23,14 +24,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Executors;
 
 
 @Component("testCreateQrCodeService")
@@ -41,10 +41,17 @@ public class TestCreateQrCodeService {
 
     private final CountDownLatch latch = new CountDownLatch(1);
 
+//    private final RingBuffer<GoodsTwoCode> buffer;
+
     @Autowired
     private TwoCodeReadService  twoCodeReadService;
     @Autowired
     private TwoCodeWriteService twoCodeWriteService;
+
+    public TestCreateQrCodeService() {
+
+//        this.buffer = disruptor.start();
+    }
 
     public void testCreateQrCode() {
         long start = System.currentTimeMillis();
@@ -57,13 +64,13 @@ public class TestCreateQrCodeService {
                 public GoodsTwoCode newInstance() {
                     return new GoodsTwoCode();
                 }
-            }, BUFF_SIZE, Executors.defaultThreadFactory(), ProducerType.SINGLE, new BlockingWaitStrategy());
+            }, BUFF_SIZE, DaemonThreadFactory.INSTANCE, ProducerType.SINGLE, new YieldingWaitStrategy());
             //消费者
-            disruptor.handleEventsWithWorkerPool(new QrCodeWorkHandler(), new QrCodeWorkHandler(), new QrCodeWorkHandler(), new QrCodeWorkHandler()).
+            disruptor.handleEventsWithWorkerPool(new QrCodeWorkHandler(), new QrCodeWorkHandler(), new QrCodeWorkHandler()).
                     then(new EventHandler<GoodsTwoCode>() {
                         @Override
                         public void onEvent(GoodsTwoCode event, long sequence, boolean endOfBatch) throws Exception {
-                            System.out.println(event.getUrl() + "-----" + event.getLockThreadId());
+                            log.info("update:" + event.getUrl() + "-----" + event.getLockThreadId());
                             twoCodeWriteService.updateTwoCode(event);
                         }
                     });
@@ -80,16 +87,16 @@ public class TestCreateQrCodeService {
 //                }
 //            });
 
-            RingBuffer<GoodsTwoCode> buffer = disruptor.start();
             List<GoodsTwoCode> list = new ArrayList<GoodsTwoCode>();
             Response<List<GoodsTwoCode>> response = twoCodeReadService.selectUnCreatedCode();
             if (response.isOk()) {
-                System.out.println("查询结果：" + response.getResult().size());
+                log.info("查询结果：" + response.getResult().size());
                 list = response.getResult();
             }
-
+            RingBuffer<GoodsTwoCode> buffer = disruptor.start();
             Thread t = new Thread(new Publisher(buffer, latch, list));
             t.start();
+//            t.join();
             latch.await();
 
             //生产者
@@ -103,17 +110,105 @@ public class TestCreateQrCodeService {
 //            });
 //        }
 
-//            disruptor.shutdown();
-//            t.interrupt();
+            disruptor.shutdown();
 
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        System.out.println("共耗时：" + (System.currentTimeMillis() - start));
+        log.info("共耗时：" + (System.currentTimeMillis() - start));
     }
 
+
+    private static class Publisher implements Runnable {
+        private final RingBuffer<GoodsTwoCode> buffer;
+        private final CountDownLatch           latch;
+        private final List<GoodsTwoCode>       list;
+
+        public Publisher(RingBuffer<GoodsTwoCode> buffer, CountDownLatch latch, List<GoodsTwoCode> list) {
+            this.buffer = buffer;
+            this.latch = latch;
+            this.list = list;
+        }
+
+//        private final static EventTranslatorOneArg TRANSLATOR = new EventTranslatorOneArg<GoodsTwoCode, GoodsTwoCode>() {
+//            @Override
+//            public void translateTo(GoodsTwoCode event, long sequence, GoodsTwoCode value) {
+//                try {
+//                    BeanUtils.copyProperties(event, value);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        };
+
+        @Override
+        public void run() {
+            try {
+                for (final GoodsTwoCode twoCode : list) {
+                    buffer.publishEvent(Translator.INSTANCE, twoCode);
+                    log.info("publish:" + twoCode.getSkuId() + "-" + twoCode.getStoreCode());
+                }
+            } catch (Exception e) {
+                throw new RuntimeException();
+            } finally {
+                latch.countDown();
+            }
+        }
+    }
+
+    private static class Translator implements EventTranslatorOneArg<GoodsTwoCode, GoodsTwoCode> {
+        private static final Translator INSTANCE = new Translator();
+
+        @Override
+        public void translateTo(GoodsTwoCode event, long sequence, GoodsTwoCode value) {
+            try {
+                BeanUtils.copyProperties(event, value);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private static class QrCodeWorkHandler implements WorkHandler<GoodsTwoCode> {
+
+        @Override
+        public void onEvent(GoodsTwoCode event) throws Exception {
+            TestCreateQrCodeService.createQrImage(event);
+            log.info("comsumer1:" + event.getUrl());
+        }
+
+    }
+
+
+    public static GoodsTwoCode createQrImage(GoodsTwoCode goodsTwoCode) throws IOException {
+        String twoCodeMess = ImagesPathUtil.getEwmUrl() + "?storeCode=" + goodsTwoCode.getStoreCode()
+                + "&skuCode=" + goodsTwoCode.getSkuId();
+        QRCode code = QRCode.from(twoCodeMess).to(ImageType.JPG)
+                .withHint(EncodeHintType.MARGIN, 0)
+                .withSize(ImagesPathUtil.getSize(), ImagesPathUtil.getSize());
+//        ByteArrayOutputStream out = code.stream();
+        ImagesPathUtil.makdir(Constants.TWO_CODE_DIR + File.separator + goodsTwoCode.getSkuId() + "_"
+                + goodsTwoCode.getStoreCode());
+        String url = Constants.TWO_CODE_DIR + "/" + goodsTwoCode.getSkuId() + "_" + goodsTwoCode.getStoreCode()
+                + "/" + goodsTwoCode.getSkuId() + "_" + goodsTwoCode.getStoreCode() + ".jpg";
+        String pic = ImagesPathUtil.getBasePath() + url;
+        OutputStream out = new FileOutputStream(new File(pic));
+//        out.write(out.toByteArray());
+        code.writeTo(out);
+        out.close();
+
+        goodsTwoCode.setUrl(url);
+        goodsTwoCode.setWidth(ImagesPathUtil.getSize());
+        goodsTwoCode.setHeight(ImagesPathUtil.getSize());
+        goodsTwoCode.setTwoCodeMess(twoCodeMess);
+        goodsTwoCode.setStatus(1);
+        goodsTwoCode.setLockThreadId(Thread.currentThread().getId());
+
+        return goodsTwoCode;
+    }
 
 //        try {
 //            long start1 = System.currentTimeMillis();
@@ -181,79 +276,6 @@ public class TestCreateQrCodeService {
 //        }
 //    }
 
-}
-
-class QrCodeWorkHandler implements WorkHandler<GoodsTwoCode> {
-
-    @Override
-    public void onEvent(GoodsTwoCode event) throws Exception {
-        createQrImage(event);
-        System.out.println("comsumer1:" + event.getUrl());
-    }
-
-    private GoodsTwoCode createQrImage(GoodsTwoCode goodsTwoCode) throws IOException {
-        String twoCodeMess = ImagesPathUtil.getEwmUrl() + "?storeCode=" + goodsTwoCode.getStoreCode()
-                + "&skuCode=" + goodsTwoCode.getSkuId();
-        QRCode code = QRCode.from(twoCodeMess).to(ImageType.JPG)
-                .withHint(EncodeHintType.MARGIN, 0)
-                .withSize(ImagesPathUtil.getSize(), ImagesPathUtil.getSize());
-        ByteArrayOutputStream out = code.stream();
-        ImagesPathUtil.makdir(Constants.TWO_CODE_DIR + File.separator + goodsTwoCode.getSkuId() + "_"
-                + goodsTwoCode.getStoreCode());
-        String url = Constants.TWO_CODE_DIR + "/" + goodsTwoCode.getSkuId() + "_" + goodsTwoCode.getStoreCode()
-                + "/" + goodsTwoCode.getSkuId() + "_" + goodsTwoCode.getStoreCode() + ".jpg";
-        String pic = ImagesPathUtil.getBasePath() + url;
-        FileOutputStream fout = new FileOutputStream(new File(pic));
-        fout.write(out.toByteArray());
-        fout.flush();
-        fout.close();
-        out.close();
-
-        goodsTwoCode.setUrl(url);
-        goodsTwoCode.setWidth(ImagesPathUtil.getSize());
-        goodsTwoCode.setHeight(ImagesPathUtil.getSize());
-        goodsTwoCode.setTwoCodeMess(twoCodeMess);
-        goodsTwoCode.setStatus(1);
-        goodsTwoCode.setLockThreadId(Thread.currentThread().getId());
-
-        return goodsTwoCode;
-    }
-}
-
-class Publisher implements Runnable {
-    private final RingBuffer<GoodsTwoCode> buffer;
-    private final CountDownLatch           latch;
-    private final List<GoodsTwoCode>       list;
-
-    public Publisher(RingBuffer<GoodsTwoCode> buffer, CountDownLatch latch, List<GoodsTwoCode> list) {
-        this.buffer = buffer;
-        this.latch = latch;
-        this.list = list;
-    }
-
-    private final EventTranslatorOneArg TRANSLATOR = new EventTranslatorOneArg<GoodsTwoCode, GoodsTwoCode>() {
-        @Override
-        public void translateTo(GoodsTwoCode event, long sequence, GoodsTwoCode value) {
-            try {
-                BeanUtils.copyProperties(event, value);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    };
-
-    @Override
-    public void run() {
-        try {
-            for (final GoodsTwoCode twoCode : list) {
-                buffer.publishEvent(TRANSLATOR, twoCode);
-            }
-        } catch (Exception e) {
-            throw new RuntimeException();
-        } finally {
-            latch.countDown();
-        }
-    }
 }
 
 
