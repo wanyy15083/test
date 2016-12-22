@@ -426,17 +426,17 @@
             <!-- 配置Tomcat插件 -->
             <!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> <version>2.2</version> <configuration> <port>8080</port>
                 <path>/</path> <staticContextDocbase>D:/path</staticContextDocbase> <staticContextPath>/path</staticContextPath> </configuration> </plugin> -->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <version>2.3-SNAPSHOT</version>
-                <configuration>
-                    <port>8080</port>
-                    <path>/</path>
-                    <staticContextPath>/path</staticContextPath>
-                    <staticContextDocbase>D:/path/</staticContextDocbase>
-                </configuration>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.apache.tomcat.maven</groupId>-->
+                <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+                <!--<version>2.3-SNAPSHOT</version>-->
+                <!--<configuration>-->
+                    <!--<port>8080</port>-->
+                    <!--<path>/</path>-->
+                    <!--<staticContextPath>/path</staticContextPath>-->
+                    <!--<staticContextDocbase>D:/path/</staticContextDocbase>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
@@ -468,6 +468,22 @@
             <!--<version>3.0</version>-->
             <!--</plugin>-->
             <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>9.2.19.v20160908</version>
+                <configuration>
+                    <httpConnector>
+                        <port>8088</port>
+                    </httpConnector>
+                    <stopPort>9999</stopPort>
+                    <stopKey>foo</stopKey>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <webAppConfig>
+                        <contextPath>/${project.artifactId}</contextPath>
+                    </webAppConfig>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>2.5</version>
@@ -490,66 +506,66 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>appassembler-maven-plugin</artifactId>
-                <version>1.8.1</version>
-                <configuration>
-                    <repositoryLayout>flat</repositoryLayout>
-                    <includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>
-                    <target>${project.build.directory}</target>
-                    <daemons>
-                        <daemon>
-                            <id>test</id>
-                            <mainClass>com.test.start.JOB_Start</mainClass>
-                            <platforms>
-                                <platform>jsw</platform>
-                            </platforms>
-                            <generatorConfigurations>
-                                <generatorConfiguration>
-                                    <generator>jsw</generator>
-                                    <includes>
-                                        <include>linux-x86-64</include>
-                                    </includes>
-                                    <configuration>
-                                        <property>
-                                            <name>configuration.directory.in.classpath.first</name>
-                                            <value>etc</value>
-                                        </property>
-                                        <property>
-                                            <name>set.default.REPO_DIR</name>
-                                            <value>lib</value>
-                                        </property>
-                                        <property>
-                                            <name>wrapper.logfile</name>
-                                            <value>logs/wrapper.log</value>
-                                        </property>
-                                    </configuration>
-                                </generatorConfiguration>
-                            </generatorConfigurations>
-                            <jvmSettings>
-                                <initialMemorySize>${test.initJvm}</initialMemorySize>
-                                <maxMemorySize>${test.maxJvm}</maxMemorySize>
-                                <systemProperties>
-                                    <systemProperty>spring.profiles.active=dubbo,zk</systemProperty>
-                                </systemProperties>
-                                <extraArguments>
-                                    <extraArgument>-server</extraArgument>
-                                </extraArguments>
-                            </jvmSettings>
-                        </daemon>
-                    </daemons>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>generate-jsw-scripts</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>generate-daemons</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<groupId>org.codehaus.mojo</groupId>-->
+                <!--<artifactId>appassembler-maven-plugin</artifactId>-->
+                <!--<version>1.8.1</version>-->
+                <!--<configuration>-->
+                    <!--<repositoryLayout>flat</repositoryLayout>-->
+                    <!--<includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>-->
+                    <!--<target>${project.build.directory}</target>-->
+                    <!--<daemons>-->
+                        <!--<daemon>-->
+                            <!--<id>test</id>-->
+                            <!--<mainClass>com.test.start.JOB_Start</mainClass>-->
+                            <!--<platforms>-->
+                                <!--<platform>jsw</platform>-->
+                            <!--</platforms>-->
+                            <!--<generatorConfigurations>-->
+                                <!--<generatorConfiguration>-->
+                                    <!--<generator>jsw</generator>-->
+                                    <!--<includes>-->
+                                        <!--<include>linux-x86-64</include>-->
+                                    <!--</includes>-->
+                                    <!--<configuration>-->
+                                        <!--<property>-->
+                                            <!--<name>configuration.directory.in.classpath.first</name>-->
+                                            <!--<value>etc</value>-->
+                                        <!--</property>-->
+                                        <!--<property>-->
+                                            <!--<name>set.default.REPO_DIR</name>-->
+                                            <!--<value>lib</value>-->
+                                        <!--</property>-->
+                                        <!--<property>-->
+                                            <!--<name>wrapper.logfile</name>-->
+                                            <!--<value>logs/wrapper.log</value>-->
+                                        <!--</property>-->
+                                    <!--</configuration>-->
+                                <!--</generatorConfiguration>-->
+                            <!--</generatorConfigurations>-->
+                            <!--<jvmSettings>-->
+                                <!--<initialMemorySize>${test.initJvm}</initialMemorySize>-->
+                                <!--<maxMemorySize>${test.maxJvm}</maxMemorySize>-->
+                                <!--<systemProperties>-->
+                                    <!--<systemProperty>spring.profiles.active=dubbo,zk</systemProperty>-->
+                                <!--</systemProperties>-->
+                                <!--<extraArguments>-->
+                                    <!--<extraArgument>-server</extraArgument>-->
+                                <!--</extraArguments>-->
+                            <!--</jvmSettings>-->
+                        <!--</daemon>-->
+                    <!--</daemons>-->
+                <!--</configuration>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>generate-jsw-scripts</id>-->
+                        <!--<phase>package</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>generate-daemons</goal>-->
+                        <!--</goals>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
             <!-- <plugin> <groupId>org.zeroturnaround</groupId> <artifactId>javarebel-maven-plugin</artifactId> <version>1.0.5</version> <executions> <execution>
                 <id>generate-rebel-xml</id> <phase>process-resources</phase> <goals> <goal>generate</goal> </goals> </execution> </executions> </plugin> -->
         </plugins>
