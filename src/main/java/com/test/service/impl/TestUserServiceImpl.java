@@ -20,7 +20,7 @@ public class TestUserServiceImpl implements TestUserService {
             .getLogger(TestUserServiceImpl.class);
 
     @Autowired
-    private TestUserMapper testUserMapper;
+    private TestUserMapper            testUserMapper;
     @Autowired
     private SkuGmzxPictureReadService skuGmzxPictureReadService;
 
@@ -56,30 +56,28 @@ public class TestUserServiceImpl implements TestUserService {
     }
 
     @Override
-    @Transactional
+//    @Transactional
     public String insertDupliUser() {
-        try {
+//        try {
 //            AnnotationTransactionAspect.aspectOf().setTransactionManager(transactionManager);
-            TestUser user1 = new TestUser(1, "110022", 20, "China", "小明");
-            TestUser user2 = new TestUser(null, "110022", 20, "China", "小明");
-//            insertUser(user1, user2);
-            testUserMapper.insert(user2);
-            if (user1 != null) {
-                testUserMapper.insert(user1);
-            }
-            return "true";
-        } catch (Exception e) {
-            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
-            e.printStackTrace();
-            return "false";
-        }
+        TestUser user1 = new TestUser(1, "110022", 20, "China", "小明");
+        TestUser user2 = new TestUser(null, "110022", 20, "China", "小明");
+        TestUser user3 = new TestUser(null, "110023", 20, "China", "小张");
+//        testUserMapper.insert(user2);
+        insertUser(user1, user3);
+//            testUserMapper.insert(user2);
+//            if (user1 != null) {
+//                testUserMapper.insert(user1);
+//            }
+        return "true";
+
     }
 
-//    @Transactional
-//    public void insertUser(TestUser user1, TestUser user2) {
-//        testUserMapper.insert(user2);
-//        if (user1 != null) {
-//            testUserMapper.insert(user1);
-//        }
-//    }
+    @Transactional
+    public void insertUser(TestUser user1, TestUser user2) {
+        testUserMapper.insert(user2);
+        if (user1 != null) {
+            testUserMapper.insert(user1);
+        }
+    }
 }

@@ -4,10 +4,7 @@ package com.test.joda;
  * Created by songyigui on 2016/6/29.
  */
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 
 public class TestJoda {
 
@@ -88,13 +85,16 @@ public class TestJoda {
 //        Calendar calendar = Calendar.getInstance();
 //        dateTime = new DateTime(calendar);
 
-        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
-        DateTime start = DateTime.parse("2011-11-18 01:01:01", format);
-        DateTime end = DateTime.parse("2011-11-20 11:02:11", format);
+//        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
+//        DateTime start = DateTime.parse("2011-11-18 01:01:01", format);
+//        DateTime end = DateTime.parse("2011-11-20 11:02:11", format);
 //        LocalDate start = new LocalDate("2011-11-18 01:01:01");
 //        LocalDate end = new LocalDate("2011-11-20 11:02:11");
-        int days = Days.daysBetween(start, end).getDays();
-        System.out.println(days);
+//        int days = Days.daysBetween(start, end).getDays();
+//        System.out.println(days);
+
+        String str = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss").parseDateTime("2012-12-26 03:27:39").toString("yyyy-MM-dd");
+        System.out.println(str);
     }
 }
 

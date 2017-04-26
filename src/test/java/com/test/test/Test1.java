@@ -35,6 +35,10 @@ public class Test1 {
 		Integer a = 1099;
 		double b = a/100;
 		System.out.println(b);
+
+		String s1 = "2016-11-21";
+		String s2 = "2016-11-22";
+		System.out.println(s1.compareTo(s2));
 	}
 	
 

@@ -68,7 +68,7 @@
 
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
-        <property name="globalRollbackOnParticipationFailure" value="false"/>
+        <!--<property name="globalRollbackOnParticipationFailure" value="false"/>-->
     </bean>
 
     <!--<tx:advice id="txAdvice" transaction-manager="transactionManager">
@@ -93,7 +93,7 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="myPointcut" />
     </aop:config>-->
 
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!-- 缺省的异步任务线程池 -->
     <task:annotation-driven executor="asyncExecutor"/>
