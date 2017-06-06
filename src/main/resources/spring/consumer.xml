@@ -8,7 +8,10 @@
     <dubbo:application name="test-consumer"/>
 
     <!-- 使用multicast广播注册中心暴露发现服务地址 -->
-    <dubbo:registry address="zookeeper://127.0.0.1:2181" timeout="30000"  register="false" check="false"/>
+    <dubbo:registry file="./test-dubbo.cache" address="zookeeper://127.0.0.1:2181" timeout="30000"/>
+    <!-- 订阅服务 -->
+    <dubbo:consumer check="false"/>
+
     <!--<dubbo:registry id="reg-300" address="zookeeper://10.128.31.85:2181" default="false" />-->
     <!--<dubbo:registry id="reg-500" address="zookeeper://10.128.31.93:2181" default="false" />-->
     <!--<dubbo:registry id="reg-800" address="zookeeper://10.124.36.11:2181" default="false" />-->
@@ -24,12 +27,12 @@
     <!--<dubbo:reference id="testUserService" interface="com.test.service.TestUserService" retries="2"-->
     <!--url="dubbo://localhost:20880" registry="registry1" />-->
 
-    <dubbo:reference id="skuGmzxPictureReadService"
-                     interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService"/>
+    <!--<dubbo:reference id="skuGmzxPictureReadService"-->
+    <!--interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService"/>-->
     <!--<dubbo:reference id="TwoCodeReadService" interface="com.gome.o2m.ic.scancode.service.TwoCodeReadService" timeout="30000" registry="reg-800" />-->
     <!--<dubbo:reference id="skuGmzxPictureReadService" interface="com.gome.o2m.ic.category.service.SkuGmzxPictureReadService" url="dubbo://10.124.26.11:20880" timeout="10000" />-->
     <dubbo:reference id="icScheduleService" interface="com.gome.o2m.ic.schedule.service.IcScheduleService"/>
-    <dubbo:reference id="twoCodeReadService" interface="com.gome.o2m.ic.scancode.service.TwoCodeReadService"/>
-    <dubbo:reference id="twoCodeWriteService" interface="com.gome.o2m.ic.scancode.service.TwoCodeWriteService"/>
+    <!--<dubbo:reference id="twoCodeReadService" interface="com.gome.o2m.ic.scancode.service.TwoCodeReadService"/>-->
+    <!--<dubbo:reference id="twoCodeWriteService" interface="com.gome.o2m.ic.scancode.service.TwoCodeWriteService"/>-->
 
 </beans>
