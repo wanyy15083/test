@@ -1,8 +1,8 @@
 package com.test.distuptor;
 
-import com.gome.o2m.ic.scancode.model.GoodsTwoCode;
 import com.lmax.disruptor.EventTranslator;
 import com.lmax.disruptor.dsl.Disruptor;
+import com.test.entity.GoodsTwoCode;
 
 import java.util.concurrent.CountDownLatch;
 

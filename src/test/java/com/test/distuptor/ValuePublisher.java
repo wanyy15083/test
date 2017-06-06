@@ -1,7 +1,7 @@
 package com.test.distuptor;
 
-import com.gome.o2m.ic.scancode.model.GoodsTwoCode;
 import com.lmax.disruptor.RingBuffer;
+import com.test.entity.GoodsTwoCode;
 
 import java.util.concurrent.CountDownLatch;
 

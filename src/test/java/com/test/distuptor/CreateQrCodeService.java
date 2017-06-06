@@ -1,18 +1,15 @@
 package com.test.distuptor;
 
-import com.gome.o2m.Response;
-import com.gome.o2m.ic.scancode.model.GoodsTwoCode;
-import com.gome.o2m.ic.scancode.service.TwoCodeReadService;
-import com.gome.o2m.ic.scancode.service.TwoCodeWriteService;
 import com.google.zxing.EncodeHintType;
+import com.test.entity.GoodsTwoCode;
 import com.test.utils.Constants;
 import com.test.utils.DateUtils;
 import com.test.utils.ImagesPathUtil;
+import com.test.utils.Response;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -37,10 +34,10 @@ public class CreateQrCodeService {
     private final CountDownLatch  latch    = new CountDownLatch(threadNum);
     private final ExecutorService executor = Executors.newFixedThreadPool(threadNum);
 
-    @Autowired
-    private TwoCodeReadService  twoCodeReadService;
-    @Autowired
-    private TwoCodeWriteService twoCodeWriteService;
+//    @Autowired
+//    private TwoCodeReadService  twoCodeReadService;
+//    @Autowired
+//    private TwoCodeWriteService twoCodeWriteService;
 
 
     public void createQrCode() {
@@ -55,7 +52,7 @@ public class CreateQrCodeService {
         final ConcurrentLinkedQueue<GoodsTwoCode> queue = new ConcurrentLinkedQueue<GoodsTwoCode>();
         List<GoodsTwoCode> resultList = new ArrayList<GoodsTwoCode>();
         try {
-            Response<List<GoodsTwoCode>> response = twoCodeReadService.selectUnCreatedCode();
+            Response<List<GoodsTwoCode>> response = null;
 
             if (response.isOk()) {
                 log.info("查询结果：" + response.getResult().size());
@@ -92,7 +89,7 @@ public class CreateQrCodeService {
             }
 
             for (GoodsTwoCode goodsTwoCode : resultList) {
-                twoCodeWriteService.updateTwoCode(goodsTwoCode);
+//                twoCodeWriteService.updateTwoCode(goodsTwoCode);
             }
 
 

@@ -1,7 +1,7 @@
 package com.test.distuptor;
 
-import com.gome.o2m.ic.scancode.model.GoodsTwoCode;
 import com.lmax.disruptor.EventHandler;
+import com.test.entity.GoodsTwoCode;
 
 /**
  * 消费者

@@ -1,12 +1,12 @@
 package com.test.distuptor;
 
-import com.gome.o2m.ic.scancode.model.GoodsTwoCode;
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
+import com.test.entity.GoodsTwoCode;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

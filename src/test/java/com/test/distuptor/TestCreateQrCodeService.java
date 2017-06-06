@@ -1,9 +1,5 @@
 package com.test.distuptor;
 
-import com.gome.o2m.Response;
-import com.gome.o2m.ic.scancode.model.GoodsTwoCode;
-import com.gome.o2m.ic.scancode.service.TwoCodeReadService;
-import com.gome.o2m.ic.scancode.service.TwoCodeWriteService;
 import com.google.zxing.EncodeHintType;
 import com.lmax.disruptor.EventFactory;
 import com.lmax.disruptor.EventHandler;
@@ -14,14 +10,15 @@ import com.lmax.disruptor.YieldingWaitStrategy;
 import com.lmax.disruptor.dsl.Disruptor;
 import com.lmax.disruptor.dsl.ProducerType;
 import com.lmax.disruptor.util.DaemonThreadFactory;
+import com.test.entity.GoodsTwoCode;
 import com.test.utils.Constants;
 import com.test.utils.ImagesPathUtil;
+import com.test.utils.Response;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
 import org.apache.commons.beanutils.BeanUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -43,10 +40,10 @@ public class TestCreateQrCodeService {
 
 //    private final RingBuffer<GoodsTwoCode> buffer;
 
-    @Autowired
-    private TwoCodeReadService  twoCodeReadService;
-    @Autowired
-    private TwoCodeWriteService twoCodeWriteService;
+//    @Autowired
+//    private TwoCodeReadService  twoCodeReadService;
+//    @Autowired
+//    private TwoCodeWriteService twoCodeWriteService;
 
     public TestCreateQrCodeService() {
 
@@ -71,7 +68,7 @@ public class TestCreateQrCodeService {
                         @Override
                         public void onEvent(GoodsTwoCode event, long sequence, boolean endOfBatch) throws Exception {
                             log.info("update:" + event.getUrl() + "-----" + event.getLockThreadId());
-                            twoCodeWriteService.updateTwoCode(event);
+//                            twoCodeWriteService.updateTwoCode(event);
                         }
                     });
 //            disruptor.handleEventsWith(new EventHandler<GoodsTwoCode>() {
@@ -88,7 +85,7 @@ public class TestCreateQrCodeService {
 //            });
 
             List<GoodsTwoCode> list = new ArrayList<GoodsTwoCode>();
-            Response<List<GoodsTwoCode>> response = twoCodeReadService.selectUnCreatedCode();
+            Response<List<GoodsTwoCode>> response = null;
             if (response.isOk()) {
                 log.info("查询结果：" + response.getResult().size());
                 list = response.getResult();
