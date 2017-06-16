@@ -8,7 +8,7 @@ import java.io.File;
 
 @Component
 public class AsyncTask {
-    @Async("asyncExecutor")
+    @Async("executor")
     public void deleteTemp(File file) {
         try {
             Thread.sleep(3000);

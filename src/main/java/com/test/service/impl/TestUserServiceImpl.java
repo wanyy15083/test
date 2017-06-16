@@ -3,7 +3,8 @@ package com.test.service.impl;
 import com.test.entity.TestUser;
 import com.test.mapper.TestUserMapper;
 import com.test.service.TestUserService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,8 @@ import java.util.List;
 
 @Service("testUserService")
 public class TestUserServiceImpl implements TestUserService {
-    private static final Logger logger = Logger
-            .getLogger(TestUserServiceImpl.class);
+    private final static Logger logger = LogManager.getLogger(TestUserServiceImpl.class);
+
 
     @Autowired
     private TestUserMapper            testUserMapper;

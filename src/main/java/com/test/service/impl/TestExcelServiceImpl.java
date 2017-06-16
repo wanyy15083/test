@@ -5,7 +5,8 @@ import com.test.entity.Sku;
 import com.test.entity.SkuPicture;
 import com.test.mapper.TestExcelMapper;
 import com.test.service.TestExcelService;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
 @Service("testExcelService")
 public class TestExcelServiceImpl implements TestExcelService {
 
-    private static final Logger logger = Logger.getLogger(TestExcelServiceImpl.class);
+    private final static Logger log = LogManager.getLogger(TestExcelServiceImpl.class);
 
     @Autowired
     private TestExcelMapper testExcelMapper;

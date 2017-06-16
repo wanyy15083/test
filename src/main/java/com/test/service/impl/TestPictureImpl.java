@@ -8,7 +8,8 @@ import com.test.utils.DateUtils;
 import com.test.utils.ImagesPathUtil;
 import net.glxn.qrgen.QRCode;
 import net.glxn.qrgen.image.ImageType;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.io.ByteArrayOutputStream;
@@ -26,7 +27,7 @@ import java.util.regex.Pattern;
 @Service("testPicture")
 public class TestPictureImpl implements TestPicture {
 
-	private static final Logger log = Logger.getLogger(TestPictureImpl.class);
+	private final static Logger log = LogManager.getLogger(TestExcelServiceImpl.class);
 
 	private static final int threadNum = 3;
 
