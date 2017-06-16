@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
 public class JOB_Start {
 
 	public static void main(String[] args) throws InterruptedException {
-		System.out.println("正在启动JOB服务......");
+		System.out.println("正在启动TEST服务......");
 		TimeZone.setDefault(TimeZone.getTimeZone("GMT+8"));
 		final ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("spring/spring-config.xml");
 		ac.start();
@@ -17,7 +17,7 @@ public class JOB_Start {
 				ac.close();
 			}
 		});
-		System.out.println("JOB服务已启动！");
+		System.out.println("TEST服务已启动！");
 		CountDownLatch countDownLatch = new CountDownLatch(1);
 		countDownLatch.await();
 	}

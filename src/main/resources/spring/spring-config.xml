@@ -13,9 +13,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--<import resource="classpath:spring/schedule.xml" />-->
-    <import resource="classpath:spring/consumer.xml"/>
-    <import resource="classpath:spring/provider.xml"/>
+    <!--<import resource="classpath:spring/spring-quartz.xml" />-->
+    <import resource="classpath:spring/dubbo-consumer.xml"/>
+    <import resource="classpath:spring/dubbo-provider.xml"/>
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>

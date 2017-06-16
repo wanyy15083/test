@@ -38,14 +38,14 @@ $(function() {
 		});
 		$('body').attr("id", systemname);
 		$('#system_title').text(systemtitle);
-		$.cookie('zheng-upms-systemid', systemid);
-		$.cookie('zheng-upms-systemname', systemname);
-		$.cookie('zheng-upms-systemtitle', systemtitle);
+		$.cookie('test-systemid', systemid);
+		$.cookie('test-systemname', systemname);
+		$.cookie('test-systemtitle', systemtitle);
 	});
 	// 显示cookie菜单
-	var systemid = $.cookie('zheng-upms-systemid') || 1;
-	var systemname = $.cookie('zheng-upms-systemname') || 'zheng-upms-server';
-	var systemtitle = $.cookie('zheng-upms-systemtitle') || '权限管理系统';
+	var systemid = $.cookie('test-systemid') || 1;
+	var systemname = $.cookie('test-systemname') || 'test';
+	var systemtitle = $.cookie('test-systemtitle') || '后台管理系统';
 	$('.system_menus').hide(0, function () {
 		$('.system_' + systemid).show();
 	});

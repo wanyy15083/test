@@ -72,7 +72,7 @@ public class RedisLock {
      * @return
      */
     public boolean lock(String lockId) {
-        while (true) {
+//        while (true) {
             Long flag = jedis.setnx(lockId, "1");
             if (flag == 1) {
                 System.out.println(Thread.currentThread().getName() + " get lock...");
@@ -86,7 +86,8 @@ public class RedisLock {
                 e.printStackTrace();
                 return false;
             }
-        }
+//        }
+        return false;
     }
 
     /**
