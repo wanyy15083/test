@@ -1,6 +1,5 @@
 package com.test.utils;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
@@ -57,7 +56,7 @@ public class MybatisGeneratorUtil {
 
         generatorConfig_vm = MybatisGeneratorUtil.class.getResource(generatorConfig_vm).getPath().replaceFirst("/", "");
 //        service_vm = MybatisGeneratorUtil.class.getResource(service_vm).getPath().replaceFirst("/", "");
-//        serviceMock_vm = MybatisGeneratorUtil.class.getResource(serviceMock_vm).getPath().replaceFirst("/", "");
+//        serviceMock_vm = MybatisGeneratorUtil.class.getResource(serveMock_vm).getPath().replaceFirst("/", "");
 //        serviceImpl_vm = MybatisGeneratorUtil.class.getResource(serviceImpl_vm).getPath().replaceFirst("/", "");
 
         String targetProject = module;
@@ -144,16 +143,16 @@ public class MybatisGeneratorUtil {
 //                System.out.println(serviceMock);
 //            }
             // 生成serviceImpl
-//            File serviceImplFile = new File(serviceImpl);
-//            if (!serviceImplFile.exists()) {
-//                Context context = new Context();
-//                context.setVariable("package_name", package_name);
-//                context.setVariable("model", model);
-//                context.setVariable("mapper", toLowerCaseFirstOne(model));
-//                context.setVariable("ctime", ctime);
-//                TemplateUtil.generate(serviceImpl_vm, serviceImpl, context);
-//                System.out.println(serviceImpl);
-//            }
+            File serviceImplFile = new File(serviceImpl);
+            if (!serviceImplFile.exists()) {
+                Context context = new Context();
+                context.setVariable("package_name", package_name);
+                context.setVariable("model", model);
+                context.setVariable("mapper", toLowerCaseFirstOne(model));
+                context.setVariable("ctime", ctime);
+                TemplateUtil.generate(serviceImpl_vm, serviceImpl, context);
+                System.out.println(serviceImpl);
+            }
         }
         System.out.println("========== 结束生成Service ==========");
 
