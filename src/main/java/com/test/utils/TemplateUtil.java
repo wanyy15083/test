@@ -1,16 +1,13 @@
 package com.test.utils;
 
-import org.apache.commons.io.output.FileWriterWithEncoding;
 import org.apache.commons.lang3.StringUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
-import org.thymeleaf.templateresolver.FileTemplateResolver;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.util.Properties;
+import java.io.FileWriter;
 
 public class TemplateUtil {
 
@@ -33,7 +30,7 @@ public class TemplateUtil {
             templateResolver.setCacheable(true);
             TemplateEngine templateEngine = new TemplateEngine();
             templateEngine.setTemplateResolver(templateResolver);
-            FileWriterWithEncoding writer = new FileWriterWithEncoding(new File(outputFilePath), "utf-8");
+            FileWriter writer = new FileWriter(new File(outputFilePath));
             templateEngine.process(getFile(inputFilePath), context, writer);
             writer.close();
         } catch (Exception ex) {

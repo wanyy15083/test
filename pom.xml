@@ -20,6 +20,21 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.gome.o2m</groupId>
+            <artifactId>dubbo-test</artifactId>
+            <version>1.0.0</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>o2m-uc-api</artifactId>
+                    <groupId>com.gome.o2m</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>o2m-nic-api</artifactId>
+                    <groupId>com.gome.o2m</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
             <version>2.9.0</version>
@@ -413,6 +428,21 @@
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring4</artifactId>
             <version>3.0.6.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mangofactory</groupId>
+            <artifactId>swagger-springmvc</artifactId>
+            <version>0.9.5</version>
         </dependency>
 
     </dependencies>

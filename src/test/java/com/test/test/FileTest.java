@@ -13,7 +13,7 @@ public class FileTest {
     @Test
     public void deleteTemp() {
         try {
-            File file = new File("1.txt");
+            File file = new File("src/main/java/1.txt");
             FileUtils.write(file, "1234567", "UTF-8");
         } catch (IOException e) {
             e.printStackTrace();

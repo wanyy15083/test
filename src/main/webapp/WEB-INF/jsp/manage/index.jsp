@@ -112,7 +112,7 @@
 		<div class="s-profile">
 			<a class="waves-effect waves-light" href="javascript:;">
 				<div class="sp-pic">
-					<img src="${basePath}${upmsUser.avatar}"/>
+					<img src="${basePath}/resources/static/images/avatar.jpg"/>
 				</div>
 				<div class="sp-info">
 					管理员，您好！
@@ -144,7 +144,7 @@
                 <a class="waves-effect" href="javascript:;"><i class="zmdi zmdi-accounts-list"></i> 系统管理</a>
                 <ul>
                     <li><a class="waves-effect" href="javascript:Tab.addTab('1', '1');">1</a></li>
-                    <li><a class="waves-effect" href="javascript:Tab.addTab('2', '/manage/organization/index');">2</a></li>
+                    <li><a class="waves-effect" href="javascript:Tab.addTab('2', '${basePath}/user/find');">2</a></li>
                 </ul>
             </li>
             <li class="sub-menu system_menus system_1 1">

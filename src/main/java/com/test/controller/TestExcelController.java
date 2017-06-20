@@ -6,6 +6,8 @@ import com.test.entity.SkuPictureImport;
 import com.test.service.TestExcelService;
 import com.test.service.impl.PropertiesService;
 import com.test.utils.DateUtils;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.net.util.Base64;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -34,6 +36,7 @@ import java.io.InputStream;
 import java.net.URLEncoder;
 import java.util.*;
 
+@Api(value = "Excel", description = "Excel导入导出")
 @Controller
 @RequestMapping("testExcel")
 public class TestExcelController {
@@ -43,6 +46,7 @@ public class TestExcelController {
     @Autowired
     private PropertiesService propertiesService;
 
+    @ApiOperation(value = "excel导入")
     @RequestMapping("import")
     @ResponseBody
     public String testExcelImport(@RequestParam("file") MultipartFile fileImport, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
@@ -104,6 +108,7 @@ public class TestExcelController {
         }
     }
 
+    @ApiOperation(value = "excel导出")
     @RequestMapping("export")
     @ResponseBody
     public String testExcelExport(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -164,6 +169,7 @@ public class TestExcelController {
         return null;
     }
 
+    @ApiOperation(value = "excel导出所有")
     @RequestMapping("exportAll")
     @ResponseBody
     public String testExcelExportAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -190,6 +196,7 @@ public class TestExcelController {
         return null;
     }
 
+    @ApiOperation(value = "excel导出sku")
     @RequestMapping("exportSku")
     @ResponseBody
     public String testExcelExportSku(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -231,6 +238,7 @@ public class TestExcelController {
         return null;
     }
 
+    @ApiOperation(value = "下载excel模板")
     @RequestMapping("download")
     @ResponseBody
     public String testExcelDownload(HttpServletRequest request, HttpServletResponse response) {
