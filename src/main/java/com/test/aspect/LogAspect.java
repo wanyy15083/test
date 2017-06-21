@@ -84,7 +84,7 @@ public class LogAspect {
         if (request.getMethod().equalsIgnoreCase("GET")) {
             userLog.setParameter(request.getQueryString());
         } else {
-            userLog.setParameter(JSON.toJSONString(request.getParameterMap()));
+            userLog.setParameter(request.getParameterMap().toString());
         }
         userLog.setResult(JSON.toJSONString(result));
         userLog.setSpendTime((int) (endTime - startTime));

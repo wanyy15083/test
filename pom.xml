@@ -220,6 +220,12 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.3</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -443,6 +449,11 @@
             <groupId>com.mangofactory</groupId>
             <artifactId>swagger-springmvc</artifactId>
             <version>1.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.2.19.v20160908</version>
         </dependency>
 
     </dependencies>
