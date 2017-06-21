@@ -1,7 +1,7 @@
 package com.test.controller;
 
-import com.gome.o2m.dubbo.sku.api.Sku;
 import com.gome.o2m.dubbo.sku.api.SkuService;
+import com.test.entity.TestUser;
 import com.test.service.TestUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,8 +28,8 @@ public class TestUserController {
 
     @RequestMapping("find")
     @ResponseBody
-    public Sku findUser() {
-        return skuService.get(1);
+    public TestUser findUser() {
+        return testUserService.findUser();
     }
 
 }

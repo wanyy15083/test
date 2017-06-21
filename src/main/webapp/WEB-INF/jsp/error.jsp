@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="utf-8"/>
-<title><spring:message code="error"/></title>
+<%--<title><spring:message code="error"/></title>--%>
 </head>
 <body>
 <% Exception e = null != exception ? (Exception) exception : (Exception)request.getAttribute("ex"); %>
@@ -21,5 +21,6 @@
 <pre>
 <% e.printStackTrace(new java.io.PrintWriter(out)); %>
 </pre>
+<p>${error}</p>
 </body>
 </html>

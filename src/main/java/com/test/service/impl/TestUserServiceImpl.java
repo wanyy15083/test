@@ -1,5 +1,7 @@
 package com.test.service.impl;
 
+import com.gome.o2m.dubbo.sku.api.Sku;
+import com.gome.o2m.dubbo.sku.api.SkuService;
 import com.test.entity.TestUser;
 import com.test.entity.UserLog;
 import com.test.mapper.TestUserMapper;
@@ -17,13 +19,17 @@ public class TestUserServiceImpl implements TestUserService {
 
 
     @Autowired
-    private TestUserMapper            testUserMapper;
+    private TestUserMapper testUserMapper;
+    @Autowired
+    private SkuService skuService;
 
 
 //    @Autowired
 //    private DataSourceTransactionManager transactionManager;
 
     public TestUser findUser() {
+        Sku sku = skuService.get(1);
+        System.out.println(sku);
         Integer id = 1;
         TestUser testUser = testUserMapper.selectByPrimaryKey(id);
         logger.info("user.name:" + testUser.getName() + "user.address"
