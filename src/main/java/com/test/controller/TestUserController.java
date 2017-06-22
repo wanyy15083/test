@@ -1,6 +1,5 @@
 package com.test.controller;
 
-import com.gome.o2m.dubbo.sku.api.SkuService;
 import com.test.entity.TestUser;
 import com.test.service.TestUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class TestUserController {
     @Autowired
     private TestUserService testUserService;
-    @Autowired
-    private SkuService skuService;
 
 
     @RequestMapping("insert")
