@@ -1,6 +1,9 @@
 package com.test.service.impl;
 
+import com.gome.o2m.dubbo.sku.api.Sku;
+import com.gome.o2m.dubbo.sku.api.SkuService;
 import com.test.entity.TestUser;
+import com.test.entity.UserLog;
 import com.test.mapper.TestUserMapper;
 import com.test.service.TestUserService;
 import org.apache.logging.log4j.LogManager;
@@ -10,23 +13,28 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("testUserService")
+@Service
 public class TestUserServiceImpl implements TestUserService {
     private final static Logger logger = LogManager.getLogger(TestUserServiceImpl.class);
 
 
     @Autowired
-    private TestUserMapper            testUserMapper;
+    private TestUserMapper testUserMapper;
+    @Autowired
+    private SkuService skuService;
 
 
 //    @Autowired
 //    private DataSourceTransactionManager transactionManager;
 
-    public void findUser() {
+    public TestUser findUser() {
+        Sku sku = skuService.get(1);
+        System.out.println(sku);
         Integer id = 1;
         TestUser testUser = testUserMapper.selectByPrimaryKey(id);
         logger.info("user.name:" + testUser.getName() + "user.address"
                 + testUser.getAddress());
+        return testUser;
     }
 
     public void insertUser() {
@@ -62,6 +70,11 @@ public class TestUserServiceImpl implements TestUserService {
 //                testUserMapper.insert(user1);
 //            }
         return "true";
+
+    }
+
+    @Override
+    public void insertUserLog(UserLog userLog) {
 
     }
 

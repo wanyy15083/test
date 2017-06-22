@@ -1,15 +1,19 @@
 package com.test.service;
 
 import com.test.entity.TestUser;
+import com.test.entity.UserLog;
 
 import java.util.List;
 
 public interface TestUserService {
-	public void findUser();
 
-	public void insertUser();
+    public TestUser findUser();
 
-	public List<TestUser> findAllUser();
+    public void insertUser();
 
-	public String insertDupliUser();
+    public List<TestUser> findAllUser();
+
+    public String insertDupliUser();
+
+    void insertUserLog(UserLog userLog);
 }

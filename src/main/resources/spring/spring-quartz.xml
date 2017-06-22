@@ -9,13 +9,13 @@
 	http://www.springframework.org/schema/task 
 	http://www.springframework.org/schema/task/spring-task.xsd">
 	
-	<context:annotation-config/>
-	<context:component-scan base-package="com.test" />
+	<!--<context:annotation-config/>-->
+	<!--<context:component-scan base-package="com.test" />-->
      
 	<!-- 注解形式定时器，需要扫描包 -->
-	<task:executor id="executor" pool-size="5" />
-	<task:scheduler id="scheduler" pool-size="10" />
-	<task:annotation-driven executor="executor" scheduler="scheduler" />
+	<!--<task:executor id="executor" pool-size="5" />-->
+	<!--<task:scheduler id="scheduler" pool-size="10" />-->
+	<!--<task:annotation-driven executor="executor" scheduler="scheduler" />-->
     
 	<!-- Job、JobDetaile定义 -->
 	<bean id="FindUserMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">

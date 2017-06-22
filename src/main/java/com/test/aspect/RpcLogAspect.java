@@ -5,44 +5,54 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.reflect.MethodSignature;
+
+import java.lang.reflect.Method;
 
 /**
  * rpc提供者和消费者日志打印
- * Created by ZhangShuzheng on 2017/4/19.
  */
+@Aspect
 public class RpcLogAspect {
 
-    private static Logger _log = LogManager.getLogger(RpcLogAspect.class);
+    private static Logger log = LogManager.getLogger(RpcLogAspect.class);
 
     // 开始时间
     private long startTime = 0L;
     // 结束时间
     private long endTime = 0L;
 
-    @Before("execution(* *..rpc..*.*(..))")
+    @Before("execution(* *..service.impl.*.*(..))")
     public void doBeforeInServiceLayer(JoinPoint joinPoint) {
-        _log.debug("doBeforeInServiceLayer");
+        log.debug("doBeforeInServiceLayer");
         startTime = System.currentTimeMillis();
     }
 
-    @After("execution(* *..rpc..*.*(..))")
+    @After("execution(* *..service.impl.*.*(..))")
     public void doAfterInServiceLayer(JoinPoint joinPoint) {
-        _log.debug("doAfterInServiceLayer");
+        log.debug("doAfterInServiceLayer");
     }
 
-    @Around("execution(* *..rpc..*.*(..))")
+    @Around("execution(* *..service.impl.*.*(..))")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
         Object result = pjp.proceed();
+        Signature signature = pjp.getSignature();
+        MethodSignature methodSignature = (MethodSignature) signature;
+        Method method = methodSignature.getMethod();
+        endTime = System.currentTimeMillis();
+        log.info("doServiceAround>>>method={},result={},耗时：{}", method.toString(), result, endTime - startTime);
         // 是否是消费端
         boolean consumerSide = RpcContext.getContext().isConsumerSide();
         // 获取最后一次提供方或调用方IP
         String ip = RpcContext.getContext().getRemoteHost();
         // 服务url
         String rpcUrl = RpcContext.getContext().getUrl().getParameter("application");
-        _log.info("consumerSide={}, ip={}, url={}", consumerSide, ip, rpcUrl);
+        log.info("consumerSide={}, ip={}, url={}", consumerSide, ip, rpcUrl);
         return result;
     }
 
