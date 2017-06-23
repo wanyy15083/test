@@ -45,7 +45,6 @@ public class RemoteFileFetcher {
                 }
             }, reloadInterval, reloadInterval, TimeUnit.MILLISECONDS);
         }
-        doFetch();
     }
 
     private void doFetch() {

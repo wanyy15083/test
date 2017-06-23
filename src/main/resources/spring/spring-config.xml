@@ -171,9 +171,9 @@
 
     <aop:aspectj-autoproxy proxy-target-class="true"/>
     <!-- 日志记录AOP实现 -->
-    <bean class="com.test.aspect.LogAspect"/>
+    <!--<bean class="com.test.aspect.LogAspect"/>-->
 
     <!-- 日志记录AOP实现 -->
-    <bean class="com.test.aspect.RpcLogAspect"/>
+    <!--<bean class="com.test.aspect.RpcLogAspect"/>-->
 
 </beans>

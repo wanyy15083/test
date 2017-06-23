@@ -91,7 +91,7 @@ public class ForbiddenWordUtils {
         InputStream is = null;
         try {
             String filename = "forbidden.txt";
-            is = ForbiddenWordUtils.class.getResourceAsStream(filename);
+            is = ForbiddenWordUtils.class.getClassLoader().getResourceAsStream(filename);
             byte[] fileCBytes = IOUtils.toByteArray(is);
             ForbiddenWordUtils.loadForbiddenWords(fileCBytes);
         } catch (IOException e) {

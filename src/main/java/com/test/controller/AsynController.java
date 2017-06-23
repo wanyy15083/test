@@ -66,7 +66,7 @@ public class AsynController {
         asyncTask.onTimeout(
                 new Callable<ModelAndView>() {
                     public ModelAndView call() throws Exception {
-                        ModelAndView mav = new ModelAndView("longtimetask");
+                        ModelAndView mav = new ModelAndView("remotecalltask");
                         mav.addObject("result", "执行超时");
                         System.out.println("task timeout:" + Thread.currentThread().getId());
                         return mav;
@@ -74,5 +74,13 @@ public class AsynController {
                 }
         );
         return new WebAsyncTask(3000, callable);
+    }
+
+    @RequestMapping("/async")
+    public ModelAndView async() {
+        ModelAndView mav = new ModelAndView("remotecalltask");
+        longTimeAsyncCallService.asyncDoSth();
+        mav.addObject("result", "异步返回");
+        return mav;
     }
 }

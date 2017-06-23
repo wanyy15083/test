@@ -19,21 +19,21 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.gome.o2m</groupId>
-            <artifactId>dubbo-test</artifactId>
-            <version>1.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>o2m-uc-api</artifactId>
-                    <groupId>com.gome.o2m</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>o2m-nic-api</artifactId>
-                    <groupId>com.gome.o2m</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.gome.o2m</groupId>-->
+            <!--<artifactId>dubbo-test</artifactId>-->
+            <!--<version>1.0.0</version>-->
+            <!--<exclusions>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>o2m-uc-api</artifactId>-->
+                    <!--<groupId>com.gome.o2m</groupId>-->
+                <!--</exclusion>-->
+                <!--<exclusion>-->
+                    <!--<artifactId>o2m-nic-api</artifactId>-->
+                    <!--<groupId>com.gome.o2m</groupId>-->
+                <!--</exclusion>-->
+            <!--</exclusions>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
