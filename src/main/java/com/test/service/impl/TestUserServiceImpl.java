@@ -8,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -54,15 +55,16 @@ public class TestUserServiceImpl implements TestUserService {
     }
 
     @Override
-//    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public String insertDupliUser() {
 //        try {
 //            AnnotationTransactionAspect.aspectOf().setTransactionManager(transactionManager);
         TestUser user1 = new TestUser(1, "110022", 20, "China", "小明");
         TestUser user2 = new TestUser(null, "110022", 20, "China", "小明");
         TestUser user3 = new TestUser(null, "110023", 20, "China", "小张");
-//        testUserMapper.insert(user2);
-        insertUser(user1, user3);
+        testUserMapper.insert(user2);
+        insertUser(null, user3);
+//        int a = 1/0;
 //            testUserMapper.insert(user2);
 //            if (user1 != null) {
 //                testUserMapper.insert(user1);
@@ -82,5 +84,7 @@ public class TestUserServiceImpl implements TestUserService {
         if (user1 != null) {
             testUserMapper.insert(user1);
         }
+//                int a = 1/0;
+
     }
 }
