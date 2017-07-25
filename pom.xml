@@ -20,19 +20,19 @@
 
     <dependencies>
         <!--<dependency>-->
-            <!--<groupId>com.gome.o2m</groupId>-->
-            <!--<artifactId>dubbo-test</artifactId>-->
-            <!--<version>1.0.0</version>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>o2m-uc-api</artifactId>-->
-                    <!--<groupId>com.gome.o2m</groupId>-->
-                <!--</exclusion>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>o2m-nic-api</artifactId>-->
-                    <!--<groupId>com.gome.o2m</groupId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
+        <!--<groupId>com.gome.o2m</groupId>-->
+        <!--<artifactId>dubbo-test</artifactId>-->
+        <!--<version>1.0.0</version>-->
+        <!--<exclusions>-->
+        <!--<exclusion>-->
+        <!--<artifactId>o2m-uc-api</artifactId>-->
+        <!--<groupId>com.gome.o2m</groupId>-->
+        <!--</exclusion>-->
+        <!--<exclusion>-->
+        <!--<artifactId>o2m-nic-api</artifactId>-->
+        <!--<groupId>com.gome.o2m</groupId>-->
+        <!--</exclusion>-->
+        <!--</exclusions>-->
         <!--</dependency>-->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -459,82 +459,82 @@
     </dependencies>
 
     <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>gome</id>-->
-            <!--<url>http://10.128.11.68:8081/nexus/content/groups/public/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>alimaven</id>-->
-            <!--<name>aliyun maven</name>-->
-            <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
-        <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>gome</id>-->
+    <!--<url>http://10.128.11.68:8081/nexus/content/groups/public/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>alimaven</id>-->
+    <!--<name>aliyun maven</name>-->
+    <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+    <!--</repository>-->
 
-        <!--<repository>-->
-            <!--<id>apache-repo</id>-->
-            <!--<name>apache Repository</name>-->
-            <!--<url>https://repository.apache.org/content/groups/public/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>java-repo</id>-->
-            <!--<name>java Repository</name>-->
-            <!--<url>http://download.java.net/maven/2/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>springsource-repo</id>-->
-            <!--<name>SpringSource Repository</name>-->
-            <!--<url>http://repo.spring.io/release/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>springsource-repo-snapshot</id>-->
-            <!--<name>SpringSource Repository</name>-->
-            <!--<url>http://repo.spring.io/snapshot/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>jboss-repo-releases</id>-->
-            <!--<name>Jboss Repository</name>-->
-            <!--<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>central</id>-->
-            <!--<name>Maven Repository Switchboard</name>-->
-            <!--<layout>default</layout>-->
-            <!--<url>http://repo.maven.apache.org/maven2</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>maven-repo1</id>-->
-            <!--<name>maven-repo1</name>-->
-            <!--<layout>default</layout>-->
-            <!--<url>http://repo1.maven.org/maven2/</url>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>sourceforge-releases</id>-->
-            <!--<name>Sourceforge Releases</name>-->
-            <!--<url>https://oss.sonatype.org/content/repositories/sourceforge-releases</url>-->
-        <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>apache-repo</id>-->
+    <!--<name>apache Repository</name>-->
+    <!--<url>https://repository.apache.org/content/groups/public/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>java-repo</id>-->
+    <!--<name>java Repository</name>-->
+    <!--<url>http://download.java.net/maven/2/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>springsource-repo</id>-->
+    <!--<name>SpringSource Repository</name>-->
+    <!--<url>http://repo.spring.io/release/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>springsource-repo-snapshot</id>-->
+    <!--<name>SpringSource Repository</name>-->
+    <!--<url>http://repo.spring.io/snapshot/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>jboss-repo-releases</id>-->
+    <!--<name>Jboss Repository</name>-->
+    <!--<url>https://repository.jboss.org/nexus/content/repositories/releases/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>central</id>-->
+    <!--<name>Maven Repository Switchboard</name>-->
+    <!--<layout>default</layout>-->
+    <!--<url>http://repo.maven.apache.org/maven2</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>maven-repo1</id>-->
+    <!--<name>maven-repo1</name>-->
+    <!--<layout>default</layout>-->
+    <!--<url>http://repo1.maven.org/maven2/</url>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>sourceforge-releases</id>-->
+    <!--<name>Sourceforge Releases</name>-->
+    <!--<url>https://oss.sonatype.org/content/repositories/sourceforge-releases</url>-->
+    <!--</repository>-->
 
     <!--</repositories>-->
     <!--<pluginRepositories>-->
 
-        <!--<pluginRepository>-->
-            <!--<id>gome</id>-->
-            <!--<url>http://10.128.11.68:8081/nexus/content/groups/public/</url>-->
-        <!--</pluginRepository>-->
-        <!--<pluginRepository>-->
-            <!--<id>alimaven</id>-->
-            <!--<name>aliyun maven</name>-->
-            <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
-        <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>gome</id>-->
+    <!--<url>http://10.128.11.68:8081/nexus/content/groups/public/</url>-->
+    <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>alimaven</id>-->
+    <!--<name>aliyun maven</name>-->
+    <!--<url>http://maven.aliyun.com/nexus/content/groups/public/</url>-->
+    <!--</pluginRepository>-->
 
 
-        <!--<pluginRepository>-->
-            <!--<id>maven2-repo</id>-->
-            <!--<name>maven2 Repository</name>-->
-            <!--<url>http://repo1.maven.org/maven2/</url>-->
-        <!--</pluginRepository>-->
-        <!--<pluginRepository>-->
-            <!--<id>Codehaus repository</id>-->
-            <!--<url>http://repository.codehaus.org/</url>-->
-        <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>maven2-repo</id>-->
+    <!--<name>maven2 Repository</name>-->
+    <!--<url>http://repo1.maven.org/maven2/</url>-->
+    <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>Codehaus repository</id>-->
+    <!--<url>http://repository.codehaus.org/</url>-->
+    <!--</pluginRepository>-->
 
     <!--</pluginRepositories>-->
     <build>
@@ -555,14 +555,14 @@
 
         <plugins>
             <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                <!--<version>3.1</version>-->
-                <!--<configuration>-->
-                    <!--<source>1.7</source>-->
-                    <!--<target>1.7</target>-->
-                    <!--<encoding>UTF-8</encoding>-->
-                <!--</configuration>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-compiler-plugin</artifactId>-->
+            <!--<version>3.1</version>-->
+            <!--<configuration>-->
+            <!--<source>1.7</source>-->
+            <!--<target>1.7</target>-->
+            <!--<encoding>UTF-8</encoding>-->
+            <!--</configuration>-->
             <!--</plugin>-->
             <!-- 配置Tomcat插件 -->
             <!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> <version>2.2</version> <configuration> <port>8080</port>
@@ -642,11 +642,27 @@
                     <testFailureIgnore>true</testFailureIgnore>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <descriptor>src/main/assembly/assembly.xml</descriptor>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!--<plugin>-->
             <!--<groupId>org.codehaus.mojo</groupId>-->
             <!--<artifactId>appassembler-maven-plugin</artifactId>-->
-            <!--<version>1.8.1</version>-->
+            <!--<version>2.0.0</version>-->
             <!--<configuration>-->
             <!--<repositoryLayout>flat</repositoryLayout>-->
             <!--<includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>-->
@@ -655,6 +671,9 @@
             <!--<daemon>-->
             <!--<id>test</id>-->
             <!--<mainClass>com.test.start.JOB_Start</mainClass>-->
+            <!--<commandLineArguments>-->
+            <!--<commandLineArgument>start</commandLineArgument>-->
+            <!--</commandLineArguments>-->
             <!--<platforms>-->
             <!--<platform>jsw</platform>-->
             <!--</platforms>-->
@@ -663,6 +682,7 @@
             <!--<generator>jsw</generator>-->
             <!--<includes>-->
             <!--<include>linux-x86-64</include>-->
+            <!--<include>windows-x86-64</include>-->
             <!--</includes>-->
             <!--<configuration>-->
             <!--<property>-->
@@ -685,6 +705,11 @@
             <!--<maxMemorySize>${test.maxJvm}</maxMemorySize>-->
             <!--<systemProperties>-->
             <!--<systemProperty>spring.profiles.active=dubbo,zk</systemProperty>-->
+            <!--<systemProperty>java.security.policy=conf/policy.all</systemProperty>-->
+            <!--<systemProperty>com.sun.management.jmxremote</systemProperty>-->
+            <!--<systemProperty>com.sun.management.jmxremote.port=8999</systemProperty>-->
+            <!--<systemProperty>com.sun.management.jmxremote.authenticate=false</systemProperty>-->
+            <!--<systemProperty>com.sun.management.jmxremote.ssl=false</systemProperty>-->
             <!--</systemProperties>-->
             <!--<extraArguments>-->
             <!--<extraArgument>-server</extraArgument>-->
@@ -703,8 +728,50 @@
             <!--</execution>-->
             <!--</executions>-->
             <!--</plugin>-->
-            <!-- <plugin> <groupId>org.zeroturnaround</groupId> <artifactId>javarebel-maven-plugin</artifactId> <version>1.0.5</version> <executions> <execution>
-                <id>generate-rebel-xml</id> <phase>process-resources</phase> <goals> <goal>generate</goal> </goals> </execution> </executions> </plugin> -->
+            <!--<plugin>-->
+            <!--<groupId>org.codehaus.mojo</groupId>-->
+            <!--<artifactId>appassembler-maven-plugin</artifactId>-->
+            <!--<version>2.0.0</version>-->
+            <!--<configuration>-->
+            <!--&lt;!&ndash; Set the target configuration directory to be used in the bin scripts &ndash;&gt;-->
+            <!--<configurationDirectory>conf</configurationDirectory>-->
+            <!--&lt;!&ndash; Copy the contents from "/src/main/config" to the target-->
+            <!--configuration directory in the assembled application &ndash;&gt;-->
+            <!--<copyConfigurationDirectory>true</copyConfigurationDirectory>-->
+            <!--&lt;!&ndash; Include the target configuration directory in the beginning of-->
+            <!--the classpath declaration in the bin scripts &ndash;&gt;-->
+            <!--<includeConfigurationDirectoryInClasspath>true</includeConfigurationDirectoryInClasspath>-->
+            <!--&lt;!&ndash; set alternative assemble directory &ndash;&gt;-->
+            <!--<assembleDirectory>${project.build.directory}/test-assemble</assembleDirectory>-->
+            <!--&lt;!&ndash; Extra JVM arguments that will be included in the bin scripts &ndash;&gt;-->
+            <!--<extraJvmArguments>-Xms128m</extraJvmArguments>-->
+            <!--&lt;!&ndash; Generate bin scripts for windows and unix pr default &ndash;&gt;-->
+            <!--<platforms>-->
+            <!--<platform>windows</platform>-->
+            <!--<platform>unix</platform>-->
+            <!--</platforms>-->
+            <!--<programs>-->
+            <!--<program>-->
+            <!--<mainClass>com.test.start.JOB_Start</mainClass>-->
+            <!--<id>test</id>-->
+            <!--</program>-->
+            <!--</programs>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
+            <!--<plugin>-->
+            <!--<groupId>org.zeroturnaround</groupId>-->
+            <!--<artifactId>javarebel-maven-plugin</artifactId>-->
+            <!--<version>1.0.5</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>generate-rebel-xml</id>-->
+            <!--<phase>process-resources</phase>-->
+            <!--<goals>-->
+            <!--<goal>generate</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 
