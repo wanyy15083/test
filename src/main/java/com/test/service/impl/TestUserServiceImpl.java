@@ -36,6 +36,7 @@ public class TestUserServiceImpl implements TestUserService {
         return testUser;
     }
 
+    @Override
     public void insertUser() {
         TestUser testUser = new TestUser();
         testUser.setId(null);
@@ -44,9 +45,7 @@ public class TestUserServiceImpl implements TestUserService {
         testUser.setAddress("北京");
         testUser.setTelephone("134XXXXXXXXXX");
         testUserMapper.insert(testUser);
-        logger.info("user.insert.success");
 
-        System.out.println("111");
     }
 
     @Override
@@ -59,11 +58,25 @@ public class TestUserServiceImpl implements TestUserService {
     public String insertDupliUser() {
 //        try {
 //            AnnotationTransactionAspect.aspectOf().setTransactionManager(transactionManager);
-        TestUser user1 = new TestUser(1, "110022", 20, "China", "小明");
-        TestUser user2 = new TestUser(null, "110022", 20, "China", "小明");
-        TestUser user3 = new TestUser(null, "110023", 20, "China", "小张");
+        TestUser user1 = new TestUser(null, "110021", 21, "China", "小一");
+        TestUser user2 = new TestUser(null, "110022", 22, "China", "小二");
+        TestUser user3 = new TestUser(null, "110023", 23, "China", "小三");
+        TestUser user4 = new TestUser(null, "110024", 24, "China", "小四");
+        testUserMapper.insert(user1);
+        System.exit(0);
         testUserMapper.insert(user2);
-        insertUser(null, user3);
+//                int a = 1/0;
+
+//        this.insertUser();
+        insertUser(user3, user4);
+
+
+//        try {
+//            insertUser(user3, user4);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+//        }
 //        int a = 1/0;
 //            testUserMapper.insert(user2);
 //            if (user1 != null) {
@@ -80,11 +93,11 @@ public class TestUserServiceImpl implements TestUserService {
 
 
     public void insertUser(TestUser user1, TestUser user2) {
-        testUserMapper.insert(user2);
+        testUserMapper.insert(user1);
         if (user1 != null) {
-            testUserMapper.insert(user1);
+            testUserMapper.insert(user2);
         }
-//                int a = 1/0;
+        int a = 1 / 0;
 
     }
 }
