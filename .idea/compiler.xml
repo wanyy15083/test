@@ -22,10 +22,16 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
+        <module name="httpclientutil" />
+        <module name="redis-spring" />
+        <module name="simple" />
         <module name="test" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.7">
+      <module name="httpclientutil" target="1.5" />
+      <module name="redis-spring" target="1.7" />
+      <module name="simple" target="1.8" />
       <module name="test" target="1.7" />
     </bytecodeTargetLevel>
   </component>

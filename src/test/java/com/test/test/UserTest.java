@@ -1,5 +1,6 @@
 package com.test.test;
 
+import com.test.entity.TestUser;
 import com.test.service.TestUserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,8 +21,16 @@ public class UserTest extends AbstractJUnit4SpringContextTests {
 
     @Test
     public void testTrans(){
-        String s = testUserService.insertDupliUser();
-        System.out.println(s);
+//        String s = testUserService.insertDupliUser();
+//        TestUser user = testUserService.findUser(1);
+        TestUser testUser = new TestUser();
+        testUser.setId(null);
+        testUser.setName("小明");
+        testUser.setAge(18);
+        testUser.setAddress("北京");
+        testUser.setTelephone("134XXXXXXXXXX");
+        testUserService.insertUser(testUser);
+//        System.out.println(user);
 
     }
 }

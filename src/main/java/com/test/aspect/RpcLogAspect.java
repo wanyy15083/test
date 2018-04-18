@@ -42,6 +42,7 @@ public class RpcLogAspect {
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {
         Object result = pjp.proceed();
         Signature signature = pjp.getSignature();
+        Object[] args = pjp.getArgs();
         MethodSignature methodSignature = (MethodSignature) signature;
         Method method = methodSignature.getMethod();
         endTime = System.currentTimeMillis();

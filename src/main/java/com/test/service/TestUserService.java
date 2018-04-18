@@ -7,13 +7,14 @@ import java.util.List;
 
 public interface TestUserService {
 
-    public TestUser findUser();
+    public TestUser findUser(Integer id);
 
-    public void insertUser();
+    public void insertUser(TestUser user);
 
     public List<TestUser> findAllUser();
 
     public String insertDupliUser();
 
     void insertUserLog(UserLog userLog);
+
 }

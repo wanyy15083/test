@@ -26,7 +26,7 @@ public class TestUserController {
     @RequestMapping("find")
     @ResponseBody
     public TestUser findUser() {
-        return testUserService.findUser();
+        return testUserService.findUser(1);
     }
 
 }

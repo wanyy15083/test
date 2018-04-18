@@ -26,10 +26,10 @@ public class TestUserServiceImpl implements TestUserService {
 //    @Autowired
 //    private DataSourceTransactionManager transactionManager;
 
-    public TestUser findUser() {
+    @Override
+    public TestUser findUser(Integer id) {
 //        Sku sku = skuService.get(1);
 //        System.out.println(sku);
-        Integer id = 1;
         TestUser testUser = testUserMapper.selectByPrimaryKey(id);
         logger.info("user.name:" + testUser.getName() + "user.address"
                 + testUser.getAddress());
@@ -37,14 +37,14 @@ public class TestUserServiceImpl implements TestUserService {
     }
 
     @Override
-    public void insertUser() {
-        TestUser testUser = new TestUser();
-        testUser.setId(null);
-        testUser.setName("小明");
-        testUser.setAge(18);
-        testUser.setAddress("北京");
-        testUser.setTelephone("134XXXXXXXXXX");
-        testUserMapper.insert(testUser);
+    public void insertUser(TestUser user) {
+//        TestUser testUser = new TestUser();
+//        testUser.setId(null);
+//        testUser.setName("小明");
+//        testUser.setAge(18);
+//        testUser.setAddress("北京");
+//        testUser.setTelephone("134XXXXXXXXXX");
+        testUserMapper.insert(user);
 
     }
 
