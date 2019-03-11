@@ -1,13 +1,13 @@
 package com.test.listener;
 
-import com.weshare.sdk.util.*;
+import com.test.utils.*;
 
 /**
  * Created by songyigui on 2018/1/11.
  */
 public class TestTask {
     public static void main(String[] args) throws Exception {
-        Task task = new Task(Utility.generateUUID(), "test");
+        Task task = new Task(CommonUtil.generateUUID(), "test");
         TaskContext context = new TaskContext(task);
         context.addListener(new TaskListener() {
             @Override

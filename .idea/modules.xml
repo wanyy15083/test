@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../httpclientutil/httpclientutil.iml" filepath="$PROJECT_DIR$/../httpclientutil/httpclientutil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../other/java8-tutorial/java8-tutorial.iml" filepath="$PROJECT_DIR$/../other/java8-tutorial/java8-tutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/../redis-spring/redis-spring.iml" filepath="$PROJECT_DIR$/../redis-spring/redis-spring.iml" />
       <module fileurl="file://$PROJECT_DIR$/../simple/simple.iml" filepath="$PROJECT_DIR$/../simple/simple.iml" />
       <module fileurl="file://$PROJECT_DIR$/test.iml" filepath="$PROJECT_DIR$/test.iml" />

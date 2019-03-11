@@ -1,6 +1,6 @@
 package com.test.concurrent;
 
-import com.weshare.sdk.util.*;
+import com.test.utils.*;
 import org.junit.*;
 
 import java.math.*;
@@ -14,9 +14,9 @@ public class ForkJoinTaskTest {
 
     @Test
     public void testTask() {
-        int now = Utility.getCurrentTimeStamp();
-        int start = Utility.getDayStartTime(now);
-        int end = Utility.getDayEndTime(now);
+        int now = CommonUtil.getCurrentTimeStamp();
+        int start = CommonUtil.getDayStartTime(now);
+        int end = CommonUtil.getDayEndTime(now);
         long startTime = System.currentTimeMillis();
         ForkJoinPool pool = new ForkJoinPool();
         Task task = new Task(start, end);

@@ -87,6 +87,7 @@ hs_err_pid*
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
+.idea/jsLibraryMappings.xml
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
@@ -124,4 +125,4 @@ crashlytics-build.properties
 fabric.properties
 
 *.iml
-*.idea/
+.idea/
